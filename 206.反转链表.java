@@ -13,6 +13,8 @@
  *     ListNode(int x) { val = x; }
  * }
  */
+
+// 递归
 class Solution {
     public ListNode reverseList(ListNode head) {
         if(head == null || head.next == null){
@@ -22,6 +24,22 @@ class Solution {
         head.next.next = head;
         head.next = null;
         return subNode;
+    }
+}
+
+// 双指针
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode pre = null;
+        ListNode cur = head;
+        ListNode temp = null;
+        while(cur != null){
+            temp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = temp;
+        }
+        return pre;
     }
 }
 // @lc code=end
