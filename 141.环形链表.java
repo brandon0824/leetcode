@@ -18,17 +18,17 @@
  */
 public class Solution {
     public boolean hasCycle(ListNode head) {
-        if(head == null || head.next == null){
+        if(head == null || head.next == null || head.next.next == null){
             return false;
         }
-        ListNode first = head;
-        ListNode second = head.next;
-        while(first != second){
-            if(second == null || second.next == null){
+        ListNode p1 = head.next;
+        ListNode p2 = head.next.next;
+        while(p1 != p2){
+            if(p2 == null || p2.next == null){
                 return false;
             }
-            first = first.next;
-            second = second.next.next;
+            p1 = p1.next;
+            p2 = p2.next.next;
         }
         return true;
     }
