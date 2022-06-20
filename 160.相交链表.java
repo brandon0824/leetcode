@@ -21,14 +21,12 @@ public class Solution {
         if(headA == null || headB == null){
             return null;
         }
-        ListNode node1 = headA;
-        ListNode node2 = headB;
-        while(node1 != node2){
-            node1 = node1 != null? node1.next: headB;
-            node2 = node2 != null? node2.next:headA;
+        ListNode p1 = headA, p2 = headB;
+        while(p1 != p2){
+            p1 = p1 != null?p1.next:headB;
+            p2 = p2 != null?p2.next:headA;
         }
-        return node1;
-        
+        return p1;
     }
 }
 // @lc code=end
