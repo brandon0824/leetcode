@@ -1,4 +1,4 @@
-## Leetcode implementation by Java.
+## Leetcode Implementation.
 
 [![Travis](https://img.shields.io/badge/language-Java-blue.svg)](https://github.com/brandon0824/leetcode) [![leetcode.cn user BrandonNg](https://img.shields.io/badge/dynamic/json?style=flat&labelColor=black&color=blue&label=leetcode.cn&query=solvedOverTotal&url=https%3A%2F%2Fbadges.xyli.codes%2Fapi%2Fusers%2FBrandonNg%2Fcn%2F&logo=leetcode&logoColor=yellow)](https://leetcode.cn/u/brandonng/)
 
