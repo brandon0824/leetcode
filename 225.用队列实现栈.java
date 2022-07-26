@@ -7,17 +7,18 @@
 // @lc code=start
 class MyStack {
     
-    Queue<Integer> queue = new LinkedList<Integer>();
+    Queue<Integer> queue;
     /** Initialize your data structure here. */
     public MyStack() {
-
+        queue = new LinkedList<Integer>();
     }
     
     /** Push element x onto stack. */
     public void push(int x) {
-        queue.add(x);
-        for(int i = 0; i < queue.size()-1; i++){
-            queue.add(queue.poll());
+        int n = queue.size();
+        queue.offer(x);
+        for(int i = 0; i < n; i++){
+            queue.offer(queue.poll());
         }
     }
     
