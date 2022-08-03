@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.ArrayList;
 
 /*
  * @lc app=leetcode.cn id=46 lang=java
@@ -9,27 +10,27 @@ import java.util.List;
 // @lc code=start
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
-        int len = nums.length;
-        List<List<Integer>> result = new ArrayList<>();
-        if(len == 0) return result;
-        boolean[] used = new boolean[len];
-        List<Integer> path = new ArrayList<>();
+        List<List<Integer>> res = new ArrayList<>();
+        int length = nums.length;
+        if(length == 0) return res;
 
-        backtrace(nums, len, 0, path, used, result);
-        return result;
+        boolean[] used = new boolean[length];
+        List<Integer> path = new ArrayList<>();
+        dfs(nums, length, 0, path, used, res);
+        return res;
     }
 
-    public void backtrace(int[] nums, int len, int depth, 
-        List<Integer> path, boolean[] used, List<List<Integer>> result){
-            if(depth == len){
-                result.add(new ArrayList<Integer>(path));
+    public void dfs(int[] nums, int len, int depth, 
+        List<Integer> path, boolean[] used, List<List<Integer>> res){
+            if(len == depth){
+                res.add(new ArrayList<>(path));
                 return;
             }
             for(int i = 0; i < len; i++){
                 if(!used[i]){
                     path.add(nums[i]);
                     used[i] = true;
-                    backtrace(nums, len, depth+1, path, used, result);
+                    dfs(nums, len, depth + 1, path, used, res);
                     used[i] = false;
                     path.remove(path.size() - 1);
                 }
