@@ -21,14 +21,15 @@ public class Solution {
         if(head == null || head.next == null || head.next.next == null){
             return false;
         }
-        ListNode p1 = head.next;
-        ListNode p2 = head.next.next;
-        while(p1 != p2){
-            if(p2 == null || p2.next == null){
+        ListNode slow = head.next;
+        ListNode fast = head.next.next;
+        while(slow != fast){
+            if(fast == null || fast.next == null){
                 return false;
             }
-            p1 = p1.next;
-            p2 = p2.next.next;
+            slow = slow.next;
+            fast = fast.next.next;
+
         }
         return true;
     }
