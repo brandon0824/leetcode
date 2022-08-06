@@ -9,17 +9,28 @@ import java.util.Arrays;
 // @lc code=start
 class Solution {
     public int lengthOfLIS(int[] nums) {
-        if(nums.length == 0) return 0;
-        int[] dp = new int[nums.length];
-        Arrays.fill(dp, 1);
-        int res = 0;
-        for(int i = 0; i < nums.length; i++) {
-            for(int j = 0; j < i; j++){
-                if(nums[j] < nums[i]){
-                    dp[i] = Math.max(dp[i], dp[j] + 1);
+        int len = nums.length;
+        if(len < 2) return len;
+        int[] arr = new int[len];
+        arr[0] = nums[0];
+        int res = 1;
+        for(int i = 1; i < len; i++){
+            if(nums[i] > arr[res-1]){
+                arr[res] = nums[i];
+                res++;
+                continue;
+            }
+            int left = 0, right = res - 1, mid;
+            while(left <= right){
+                mid = left + (right - left) / 2;
+                if(arr[mid] >= nums[i]){
+                    right = mid - 1;
+                }
+                else{
+                    left = mid + 1;
                 }
             }
-            res = Math.max(res, dp[i]);
+            arr[left] = nums[i];
         }
         return res;
     }
