@@ -17,28 +17,19 @@
  */
 class Solution {
     public ListNode sortList(ListNode head) {
-        return sortList(head, null);
-    }
-
-    public ListNode sortList(ListNode head, ListNode tail){
         if(head == null) return head;
-        if(head.next == tail){
-            head.next = null;
-            return head;
+        int length = 0;
+        ListNode node = head;
+        while(node != null){
+            length++;
+            node = node.next;
         }
-        ListNode slow = head, fast = head;
-        while(fast != tail){
-            slow = slow.next;
-            fast = fast.next;
-            if(fast != tail){
-                fast = fast.next;
-            }
+        ListNode dummyNode = new ListNode(0);
+        dummyNode.next = head;
+
+        for(int sublen = 1; sublen < length; sublen *= 2){
+            
         }
-        ListNode mid = slow;
-        ListNode list1 = sortList(head, mid);
-        ListNode list2 = sortList(mid, tail);
-        ListNode sorted = mergeTwoList(list1, list2);
-        return sorted;
     }
 
     public ListNode mergeTwoList(ListNode p1, ListNode p2){
