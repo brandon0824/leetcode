@@ -27,9 +27,37 @@ class Solution {
         ListNode dummyNode = new ListNode(0);
         dummyNode.next = head;
 
-        for(int sublen = 1; sublen < length; sublen *= 2){
-            
+        for(int sublen = 1; sublen < length; sublen <<= 1){
+            ListNode pre = dummyNode;
+            ListNode cur = dummyNode.next;
+            while(cur != null){
+                ListNode head_1 = cur;
+                for(int i = 1; i < sublen && cur != null && cur.next != null; i++){
+                    cur = cur.next;
+                }
+
+                ListNode head_2 = cur.next;
+                cur.next = null;
+                cur = head_2;
+                for(int i = 1; i < sublen && cur != null && cur.next != null; i++){
+                    cur = cur.next;
+                }
+
+                ListNode next = null;
+                if(cur != null){
+                    next = cur.next;
+                    cur.next = null;
+                }
+
+                ListNode merged = mergeTwoList(head_1, head_2);
+                pre.next = merged;
+                while(pre.next != null){
+                    pre = pre.next;
+                }
+                cur = next;
+            }
         }
+        return dummyNode.next;
     }
 
     public ListNode mergeTwoList(ListNode p1, ListNode p2){
