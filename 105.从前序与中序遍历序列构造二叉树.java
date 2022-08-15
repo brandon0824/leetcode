@@ -30,7 +30,7 @@ class Solution {
     }
 
     private TreeNode constructTree(int[] pre, int startPre, int endPre,
-                                    Map<Integer, Integer> indexMap, int startIn, int endIn){
+                Map<Integer, Integer> indexMap, int startIn, int endIn){
         if(startPre > endPre || startIn > endIn){
             return null;
         }
@@ -38,8 +38,10 @@ class Solution {
         int rootval = pre[startPre];
         TreeNode node = new TreeNode(rootval);
         int rootIndex = indexMap.get(rootval);
-        node.left = constructTree(pre, startPre+1, rootIndex-startIn+startPre, indexMap, startIn, rootIndex-1);
-        node.right = constructTree(pre, rootIndex-startIn+startPre+1, endPre, indexMap, rootIndex+1, endIn);
+        node.left = constructTree(pre, startPre+1, rootIndex-startIn+startPre, 
+                indexMap, startIn, rootIndex-1);
+        node.right = constructTree(pre, rootIndex-startIn+startPre+1, 
+                endPre, indexMap, rootIndex+1, endIn);
         return node;
     }
 }
