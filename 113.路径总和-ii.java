@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 /*
  * @lc app=leetcode.cn id=113 lang=java
  *
@@ -15,28 +17,26 @@
  * }
  */
 class Solution {
-    LinkedList<List<Integer>> res = new LinkedList<>();
-    LinkedList<Integer> path = new LinkedList<>();
-    
+    LinkedList<List<Integer>> res = new LinkedList<List<Integer>>();
+    LinkedList<Integer> path = new LinkedList<Integer>();
+
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
         recur(root, sum);
         return res;
     }
 
-    private void recur(TreeNode root, int tar){
+    public void recur(TreeNode root, int target) {
         if(root == null) return;
         path.add(root.val);
-        tar -= root.val;
-
-        //递归出口
-        if(tar == 0 && root.left == null && root.right == null){
-            res.add(new LinkedList(path));
+        target -= root.val;
+        
+        if(target == 0 && root.left == null && root.right == null){
+            res.add(new LinkedList<Integer>(path));
         }
-        recur(root.left, tar);
-        recur(root.right, tar);
+        recur(root.left, target);
+        recur(root.right, target);
         path.removeLast();
     }
-
 }
 // @lc code=end
 
