@@ -7,21 +7,21 @@
 // @lc code=start
 class Solution {
     public boolean searchMatrix(int[][] matrix, int target) {
-        if(matrix == null || matrix.length == 0 || matrix[0].length == 0){
-            return false;
-        }
-        int rows = matrix.length, columns = matrix[0].length;
-        int row = 0, column = columns - 1;
-        while(row < rows && column >= 0){
-            int num = matrix[row][column];
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        if(matrix == null || rows == 0 || cols == 0) return false;
+        
+        int row = 0, col = cols - 1;
+        while(row < rows && col >= 0){
+            int num = matrix[row][col];
             if(num == target){
                 return true;
             }
-            else if(num > target){
-                column--;
+            else if(num < target){
+                row++;
             }
             else{
-                row++;
+                col--;
             }
         }
         return false;
