@@ -8,27 +8,31 @@
 class Solution {
     public String longestPalindrome(String s) {
         int strlen = s.length();
-        if(s == null || strlen < 2){
-            return s;
+        if(s == null || strlen == 0){
+            return "";
         }
-
-        int maxStart = 0, maxEnd = 0, maxLen = 1;
-        boolean[][] dp = new boolean[strlen][strlen];
-
-        for(int r = 1; r < strlen; r++){
-            for(int l = 0; l < r; l++){
-                if(s.charAt(l) == s.charAt(r) && (r - l <= 2 || dp[l+1][r-1])){
-                    //此处为了兼容 aa（r-l=1）和aba（r-l=2）这两种回文串 单独字符串已经判断了
-                    dp[l][r] = true;
-                    if(r - l + 1 > maxLen){
-                        maxLen = r - l + 1;
-                        maxStart = l;
-                        maxEnd = r;
-                    }
-                }
+        int left = 0, right = 0;
+        int len = 1, maxStart = 0, maxLen = 0;
+        for(int i = 0; i < strlen; i++){
+            left = i - 1;
+            right = i + 1;
+            while(left >= 0 && s.charAt(i) == s.charAt(left)){
+                left--;len++;
             }
+            while(right < strlen && s.charAt(i) == s.charAt(right)){
+                right++;len++;
+            }
+            while(left >= 0 && right < strlen && s.charAt(left) == s.charAt(right)){
+                left--;right++;
+                len += 2;            
+            }
+            if(len > maxLen){
+                maxLen = len;
+                maxStart = left;
+            }
+            
         }
-        return s.substring(maxStart, maxEnd+1);
+        return s.substring(maxStart + 1, maxStart + maxLen + 1);
     }
 }
 // @lc code=end
